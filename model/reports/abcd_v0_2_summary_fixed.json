@@ -1,0 +1,13 @@
+{
+  "ppg_degraded_ecg_ok_maps_to_measure_ok": false,
+  "ppg_degraded_ecg_ok_final_action": "FINAL_UNCERTAIN",
+  "ecg_degraded_ppg_ok_final_action": "RETEST_CONTACT",
+  "all_normal_final_action": "MEASURE_OK",
+  "diagnosis_output_absent": true,
+  "model_c_gated_by_b": true,
+  "rule_fallback_enabled": true,
+  "abcd_v0_2_pc_pipeline_ready": true,
+  "firmware_ready": false,
+  "tflite_all_ready": false,
+  "gd32_ready": false
+}

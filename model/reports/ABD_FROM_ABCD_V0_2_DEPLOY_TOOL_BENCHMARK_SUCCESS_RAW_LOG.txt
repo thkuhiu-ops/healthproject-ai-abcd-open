@@ -1,0 +1,134 @@
+Model user benchmarking by dataset.....
+
+Open serial and PC sent NPZ file number to mcu...
+NPZ file Number: 1 sent success
+
+Start benchmark for dataset: LOCAL_PATH_REMOVED
+
+*********************************************************************************************************
+1. Run model by using Tensorflow Lite in PC, dataset from user npz data, total frame len:20.
+The 0 frame inference result by PC:
+ [0.00169614DATE_REMOVED617, 0.000196DATE_REMOVED229616, 0.9981076717376709]
+The 1 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 2 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 3 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 4 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 5 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 6 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 7 frame inference result by PC:
+ [0.0026823028456419706, 0.004101919941604137, 0.9932158589363098]
+The 8 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 9 frame inference result by PC:
+ [0.01589951105415821, 0.784005343914032, 0.DATE_REMOVED199329376]
+The 10 frame inference result by PC:
+ [0.0017594612436369061, 0.0010564548429101706, 0.9971840977668762]
+The 11 frame inference result by PC:
+ [0.0016255328664556146, 0.0009314477792941034, 0.9974429607391357]
+The 12 frame inference result by PC:
+ [0.0009068592917174101, 0.00012545751815196127, 0.9989676475524902]
+The 13 frame inference result by PC:
+ [0.0009400793933309615, 0.0001326982892351225, 0.9989272952079773]
+The 14 frame inference result by PC:
+ [0.001969008008018136, 0.0004298426501918584, 0.9976012110710144]
+The 15 frame inference result by PC:
+ [0.002238866174593568, 0.0005272575072012842, 0.9972339272499084]
+The 16 frame inference result by PC:
+ [0.002238866174593568, 0.0005272575072012842, 0.9972339272499084]
+The 17 frame inference result by PC:
+ [0.0015690958825871348, 0.0002995925897266716, 0.9981313347816467]
+The 18 frame inference result by PC:
+ [0.0015490694DATE_REMOVED5, 0.0002935426018666476, 0.9981573224067688]
+The 19 frame inference result by PC:
+ [0.002789104590192437, 0.012558087706565857, 0.9846528172492981]
+<class 'numpy.float32'>
+*********************************************************************************************************
+Step2. Run model by using GD32 NN LIB in MCU, total frame len:20.
+
+Open serial and PC waiting MCU Response...
+
+MCU Response: MCU_READY
+
+MCU invoking with npz data...
+
+
+Receiving No.1 mcu invoke result, total:20
+Receiving No.2 mcu invoke result, total:20
+Receiving No.3 mcu invoke result, total:20
+Receiving No.4 mcu invoke result, total:20
+Receiving No.5 mcu invoke result, total:20
+Receiving No.6 mcu invoke result, total:20
+Receiving No.7 mcu invoke result, total:20
+Receiving No.8 mcu invoke result, total:20
+Receiving No.9 mcu invoke result, total:20
+Receiving No.10 mcu invoke result, total:20
+Receiving No.11 mcu invoke result, total:20
+Receiving No.12 mcu invoke result, total:20
+Receiving No.13 mcu invoke result, total:20
+Receiving No.14 mcu invoke result, total:20
+Receiving No.15 mcu invoke result, total:20
+Receiving No.16 mcu invoke result, total:20
+Receiving No.17 mcu invoke result, total:20
+Receiving No.18 mcu invoke result, total:20
+Receiving No.19 mcu invoke result, total:20
+Receiving No.20 mcu invoke result, total:20
+
+Receive complete
+
+MCU invoke result
+The 0 frame inference result by MCU:
+[0.0016961421351879835, 0.000196DATE_REMOVED42114, 0.9981076717376709]
+The 1 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 2 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 3 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 4 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 5 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 6 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 7 frame inference result by MCU:
+[0.002682300051674247, 0.004101917613297701, 0.9932157397270203]
+The 8 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 9 frame inference result by MCU:
+[0.015899501740932465, 0.7840052843093872, 0.DATE_REMOVED179561615]
+The 10 frame inference result by MCU:
+[0.0017594614764675498, 0.0010564548429101706, 0.9971840977668762]
+The 11 frame inference result by MCU:
+[0.0016255324007943273, 0.0009314474300481379, 0.9974430799484253]
+The 12 frame inference result by MCU:
+[0.0009068592917174101, 0.00012545750360004604, 0.9989676475524902]
+The 13 frame inference result by MCU:
+[0.0009400788112543523, 0.0001326982892351225, 0.9989271759986877]
+The 14 frame inference result by MCU:
+[0.001969008008018136, 0.00042984288302250206, 0.9976012110710144]
+The 15 frame inference result by MCU:
+[0.0022388664074242115, 0.0005272575072012842, 0.9972339272499084]
+The 16 frame inference result by MCU:
+[0.0022388664074242115, 0.0005272575072012842, 0.9972339272499084]
+The 17 frame inference result by MCU:
+[0.0015690959990024567, 0.00029959261883050203, 0.9981313347816467]
+The 18 frame inference result by MCU:
+[0.0015490689547732472, 0.0002935423981398344, 0.9981574416160583]
+The 19 frame inference result by MCU:
+[0.0027891043573617935, 0.012558076530694962, 0.9846528172492981]
+*********************************************************************************************************
+Step3. Evaluate results.
+
+Inference times: 20
+
+Inference average latency: 0.09 ms
+
+Average error: 2.1440306833634772e-08
+
+Max error: 1.19DATE_REMOVED078125e-07 

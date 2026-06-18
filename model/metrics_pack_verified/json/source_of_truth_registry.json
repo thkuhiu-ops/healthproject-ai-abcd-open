@@ -1,0 +1,79 @@
+[
+  {
+    "model": "Model A",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "original model validation prediction table",
+    "split": "validation",
+    "label_order": "GOOD/BAD/UNCERTAIN",
+    "metrics_available": true,
+    "prediction_available": true,
+    "authoritative": true,
+    "reason": "v0.4.1 fixed validation table recomputes to expected 38/41 matrix."
+  },
+  {
+    "model": "Model B",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "training/evaluation summary JSON",
+    "split": "test",
+    "label_order": "ECG_GOOD/ECG_BAD/ECG_UNCERTAIN",
+    "metrics_available": true,
+    "prediction_available": false,
+    "authoritative": true,
+    "reason": "No prediction-level test table found; official metrics JSON is used report-only."
+  },
+  {
+    "model": "Model C",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "threshold-calibrated prediction table",
+    "split": "device_test_after_s05_s06",
+    "label_order": "NORMAL/RHYTHM_SUSPECT/OTHER_OR_UNCERTAIN",
+    "metrics_available": true,
+    "prediction_available": true,
+    "authoritative": true,
+    "reason": "Final accepted rates are recomputed from the device_test_after_s05_s06 rows using thresholds 0.42/0.60; raw binary output and validation rows are not final metrics."
+  },
+  {
+    "model": "Model C",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "threshold-calibrated summary JSON",
+    "split": "device_test_after_s05_s06",
+    "label_order": "NORMAL/RHYTHM_SUSPECT/OTHER_OR_UNCERTAIN",
+    "metrics_available": true,
+    "prediction_available": false,
+    "authoritative": true,
+    "reason": "Defines accepted thresholds and safety rates for the device_test_after_s05_s06 evaluation split."
+  },
+  {
+    "model": "Model D",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "final metrics JSON",
+    "split": "test",
+    "label_order": "10 fusion classes",
+    "metrics_available": true,
+    "prediction_available": false,
+    "authoritative": true,
+    "reason": "No prediction-level table found; official v0.2 metrics JSON contains best-model test matrix and high-risk errors."
+  },
+  {
+    "model": "ABCD smoke",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "fixed smoke-test output",
+    "split": "smoke",
+    "label_order": "final_action",
+    "metrics_available": true,
+    "prediction_available": false,
+    "authoritative": true,
+    "reason": "Integration smoke output only; not used as single-model accuracy."
+  },
+  {
+    "model": "ABCD registry",
+    "source_file": "LOCAL_PATH_REMOVED",
+    "source_type": "model registry",
+    "split": "n/a",
+    "label_order": "n/a",
+    "metrics_available": false,
+    "prediction_available": false,
+    "authoritative": true,
+    "reason": "Registry/schema provenance source, not evaluation metrics."
+  }
+]

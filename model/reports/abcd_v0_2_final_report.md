@@ -1,0 +1,73 @@
+# ABCD Integrated v0.2 Final Report
+
+## 1. Goal
+
+Integrate A/B/C/D into a unified PC-side inference and fusion pipeline.
+
+## 2. Model Status
+
+| Model | Version | Status | Deploy Status |
+| --- | --- | --- | --- |
+| Model A - PPG quality gate | v0.4 | FOUND | PC_CANDIDATE_REFERENCE_ONLY |
+| Model B - ECG quality gate | v0.1 | FOUND | PC_CANDIDATE_REFERENCE_ONLY |
+| Model C - ECG rhythm-risk hint candidate | v0.4 threshold-calibrated compromise | SMOKE_USABLE_DO_NOT_DEPLOY | DO_NOT_DEPLOY |
+| Model D - Fusion decision | v0.2 | FOUND_PC_CANDIDATE | PC_ONLY_NOT_FIRMWARE_READY |
+
+## 3. What Changed From ABCD v0.1
+
+ABCD v0.1 used D v0.1, which depended on old Model C proxy fields such as
+`C_normal_score`, `C_premature_score`, `C_irregular_score`, and
+`C_uncertain_score`. ABCD v0.2 uses D v0.2, which directly consumes current
+Model C v0.4 outputs: `model_c_final_label`, `model_c_p_normal`,
+`model_c_p_rhythm_suspect`, and `model_c_reason`.
+
+## 4. Unified Schema
+
+Input schema: `schemas/abcd_v0_2_unified_input_schema.json`.
+Output schema: `schemas/abcd_v0_2_unified_output_schema.json`.
+
+Key groups: Model A PPG quality fields, Model B ECG quality fields, Model C
+rhythm-risk hint fields, IMU/TMP fields, rule flags, and Model D/fusion output.
+
+## 5. Inference Pipeline
+
+Model A -> Model B -> Model C gated by B -> Rule flags -> D v0.2 Fusion.
+Hard rule fallback is enabled and overrides conflicting ML output.
+
+## 6. Smoke Test
+
+| Case | D label | final_action |
+| --- | --- | --- |
+| all_normal | FINAL_NORMAL_CONFIDENT | MEASURE_OK |
+| ppg_bad_ecg_good | PPG_DEGRADED_ECG_OK | MEASURE_OK |
+| ecg_bad_ppg_good | ECG_DEGRADED_PPG_OK | RETEST_CONTACT |
+| rhythm_suspect | RHYTHM_SUSPECT_RETEST | RHYTHM_RISK_RETEST |
+| motion_degraded | MOTION_DEGRADED | KEEP_STILL |
+| contact_bad | CONTACT_BAD_RETEST | RETEST_CONTACT |
+| recovery_wait | RECOVERY_WAIT | RETEST_AFTER_RECOVERY |
+| sensor_conflict | SENSOR_CONFLICT | SENSOR_CONFLICT_RETEST |
+| measure_failed | MEASURE_FAILED | MEASURE_FAILED |
+| all_uncertain | FINAL_UNCERTAIN | FINAL_UNCERTAIN |
+
+Smoke result: PASS.
+
+## 7. Safety Boundary
+
+- No diagnosis output.
+- Model A is a PPG quality gate, not diagnosis.
+- Model B is an ECG quality gate, not diagnosis.
+- Model C is a rhythm risk hint candidate only, not diagnosis.
+- Model D is a fusion decision layer only.
+- This is PC pipeline only.
+- No cross-subject clinical generalization is claimed.
+
+## 8. Deployment Gate
+
+PC_ABCD_PIPELINE_READY = True
+FIRMWARE_READY = False
+TFLITE_ALL_READY = False
+GD32_READY = False
+
+## 9. Next Action
+
+Freeze PC integration contract; prepare MDK/Firmware interface design later; do not proceed to board deployment until TFLite export and MCU replay are completed.

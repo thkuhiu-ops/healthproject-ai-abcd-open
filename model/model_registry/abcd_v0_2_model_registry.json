@@ -1,0 +1,98 @@
+{
+  "registry_name": "abcd_v0_2_model_registry",
+  "version": "v0.2",
+  "scope": "PC-side integrated inference and fusion candidate only.",
+  "models": {
+    "A": {
+      "model_name": "Model A - PPG quality gate",
+      "version": "v0.4",
+      "source_directory": "LOCAL_PATH_REMOVED",
+      "model_file": "LOCAL_PATH_REMOVED",
+      "preprocessor_file": "",
+      "feature_schema_file": "LOCAL_PATH_REMOVED",
+      "label_map_file": "LOCAL_PATH_REMOVED",
+      "threshold_file": "",
+      "final_report": "LOCAL_PATH_REMOVED",
+      "summary_json": "LOCAL_PATH_REMOVED",
+      "input_features": 58,
+      "output_labels": "PPG_GOOD|PPG_BAD|PPG_UNCERTAIN",
+      "status": "FOUND",
+      "deploy_status": "PC_CANDIDATE_REFERENCE_ONLY",
+      "safety_boundary": "PPG quality gate, not diagnosis."
+    },
+    "B": {
+      "model_name": "Model B - ECG quality gate",
+      "version": "v0.1",
+      "source_directory": "LOCAL_PATH_REMOVED",
+      "model_file": "LOCAL_PATH_REMOVED",
+      "preprocessor_file": "",
+      "feature_schema_file": "LOCAL_PATH_REMOVED",
+      "label_map_file": "LOCAL_PATH_REMOVED",
+      "threshold_file": "",
+      "final_report": "LOCAL_PATH_REMOVED",
+      "summary_json": "LOCAL_PATH_REMOVED",
+      "input_features": 40,
+      "output_labels": "ECG_GOOD|ECG_BAD|ECG_UNCERTAIN",
+      "status": "FOUND",
+      "deploy_status": "PC_CANDIDATE_REFERENCE_ONLY",
+      "safety_boundary": "ECG quality gate, not diagnosis."
+    },
+    "C": {
+      "model_name": "Model C - ECG rhythm-risk hint candidate",
+      "version": "v0.4 threshold-calibrated compromise",
+      "source_directory": "LOCAL_PATH_REMOVED",
+      "model_file": "LOCAL_PATH_REMOVED",
+      "preprocessor_file": "LOCAL_PATH_REMOVED",
+      "feature_schema_file": "LOCAL_PATH_REMOVED",
+      "label_map_file": "LOCAL_PATH_REMOVED",
+      "threshold_file": "LOCAL_PATH_REMOVED",
+      "final_report": "LOCAL_PATH_REMOVED",
+      "summary_json": "LOCAL_PATH_REMOVED",
+      "input_features": 6,
+      "output_labels": "NORMAL|RHYTHM_SUSPECT|OTHER_OR_UNCERTAIN",
+      "status": "SMOKE_USABLE_DO_NOT_DEPLOY",
+      "deploy_status": "DO_NOT_DEPLOY",
+      "safety_boundary": "Rhythm risk hint candidate, not diagnosis, not deployable; gated by Model B ECG_GOOD."
+    },
+    "D": {
+      "model_name": "Model D - Fusion decision",
+      "version": "v0.2",
+      "source_directory": "LOCAL_PATH_REMOVED",
+      "model_file": "LOCAL_PATH_REMOVED",
+      "preprocessor_file": "LOCAL_PATH_REMOVED",
+      "feature_schema_file": "LOCAL_PATH_REMOVED",
+      "label_map_file": "LOCAL_PATH_REMOVED",
+      "threshold_file": "",
+      "final_report": "LOCAL_PATH_REMOVED",
+      "summary_json": "LOCAL_PATH_REMOVED",
+      "input_features": 34,
+      "output_labels": "FINAL_NORMAL_CONFIDENT|PPG_DEGRADED_ECG_OK|ECG_DEGRADED_PPG_OK|MOTION_DEGRADED|CONTACT_BAD_RETEST|RECOVERY_WAIT|RHYTHM_SUSPECT_RETEST|SENSOR_CONFLICT|FINAL_UNCERTAIN|MEASURE_FAILED",
+      "status": "FOUND_PC_CANDIDATE",
+      "deploy_status": "PC_ONLY_NOT_FIRMWARE_READY",
+      "safety_boundary": "Fusion decision PC candidate with rule fallback; not firmware-ready."
+    }
+  },
+  "model_c_gate": {
+    "normal_threshold": 0.42,
+    "suspect_threshold": 0.6,
+    "participates_only_if_model_b_label": "ECG_GOOD"
+  },
+  "model_d_v0_2": {
+    "directly_uses_model_c_v0_4": true,
+    "rule_fallback_enabled": true
+  },
+  "deployment_gates": {
+    "PC_ABCD_PIPELINE_READY": true,
+    "FIRMWARE_READY": false,
+    "TFLITE_ALL_READY": false,
+    "GD32_READY": false
+  },
+  "forbidden_output_tokens": [
+    "DIAGNOSIS",
+    "HEART_DISEASE",
+    "AF_DIAGNOSIS",
+    "PVC_DIAGNOSIS",
+    "MYOCARDIAL_ISCHEMIA",
+    "DISEASE_DETECTED"
+  ]
+}

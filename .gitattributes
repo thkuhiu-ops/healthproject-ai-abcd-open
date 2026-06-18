@@ -1,0 +1,12 @@
+*.csv text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.png binary
+*.pb binary
+*.keras binary
+*.tflite binary
+*.data-00000-of-00001 binary
+*.index binary

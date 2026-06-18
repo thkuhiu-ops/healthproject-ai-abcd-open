@@ -1,0 +1,11 @@
+actual_final_action,case_name,expected_final_action,final_reason,pass_fail
+MEASURE_OK,all_normal,MEASURE_OK,All core signals are usable; no major risk hint.,PASS
+FINAL_UNCERTAIN,ppg_bad_ecg_good,FINAL_UNCERTAIN,"ECG is usable, but PPG/SpO2 is degraded; retest PPG contact if SpO2 or PPG-HR is required.",PASS
+RETEST_CONTACT,ecg_bad_ppg_good,RETEST_CONTACT,"PPG is usable, but ECG is degraded; fix ECG contact/lead condition before ECG rhythm interpretation.",PASS
+RHYTHM_RISK_RETEST,rhythm_suspect,RHYTHM_RISK_RETEST,ECG rhythm-risk hint detected; retest under stable contact and stillness. Not a clinical conclusion.,PASS
+KEEP_STILL,motion_degraded,KEEP_STILL,Motion may degrade signal reliability; keep still and retest.,PASS
+RETEST_CONTACT,contact_bad,RETEST_CONTACT,Contact or lead condition is unreliable; fix sensor contact and retest.,PASS
+RETEST_AFTER_RECOVERY,recovery_wait,RETEST_AFTER_RECOVERY,Sensor recovery or physiological recovery window; wait and retest.,PASS
+SENSOR_CONFLICT_RETEST,sensor_conflict,SENSOR_CONFLICT_RETEST,Sensor outputs conflict; retest under stable conditions.,PASS
+MEASURE_FAILED,measure_failed,MEASURE_FAILED,Multiple core signals unavailable or invalid.,PASS
+FINAL_UNCERTAIN,all_uncertain,FINAL_UNCERTAIN,Information is insufficient for confident measurement.,PASS

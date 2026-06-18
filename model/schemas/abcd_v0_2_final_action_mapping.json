@@ -1,0 +1,46 @@
+{
+  "version": "abcd_v0_2_final_action_mapping_fixed",
+  "only_final_normal_confident_maps_to_measure_ok": true,
+  "mapping": {
+    "FINAL_NORMAL_CONFIDENT": {
+      "final_action": "MEASURE_OK",
+      "final_reason": "All core signals are usable; no major risk hint."
+    },
+    "PPG_DEGRADED_ECG_OK": {
+      "final_action": "FINAL_UNCERTAIN",
+      "final_reason": "ECG is usable, but PPG/SpO2 is degraded; retest PPG contact if SpO2 or PPG-HR is required."
+    },
+    "ECG_DEGRADED_PPG_OK": {
+      "final_action": "RETEST_CONTACT",
+      "final_reason": "PPG is usable, but ECG is degraded; fix ECG contact/lead condition before ECG rhythm interpretation."
+    },
+    "RHYTHM_SUSPECT_RETEST": {
+      "final_action": "RHYTHM_RISK_RETEST",
+      "final_reason": "ECG rhythm-risk hint detected; retest under stable contact and stillness. Not a clinical conclusion."
+    },
+    "MOTION_DEGRADED": {
+      "final_action": "KEEP_STILL",
+      "final_reason": "Motion may degrade signal reliability; keep still and retest."
+    },
+    "CONTACT_BAD_RETEST": {
+      "final_action": "RETEST_CONTACT",
+      "final_reason": "Contact or lead condition is unreliable; fix sensor contact and retest."
+    },
+    "RECOVERY_WAIT": {
+      "final_action": "RETEST_AFTER_RECOVERY",
+      "final_reason": "Sensor recovery or physiological recovery window; wait and retest."
+    },
+    "SENSOR_CONFLICT": {
+      "final_action": "SENSOR_CONFLICT_RETEST",
+      "final_reason": "Sensor outputs conflict; retest under stable conditions."
+    },
+    "MEASURE_FAILED": {
+      "final_action": "MEASURE_FAILED",
+      "final_reason": "Multiple core signals unavailable or invalid."
+    },
+    "FINAL_UNCERTAIN": {
+      "final_action": "FINAL_UNCERTAIN",
+      "final_reason": "Information is insufficient for confident measurement."
+    }
+  }
+}

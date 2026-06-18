@@ -1,0 +1,36 @@
+# ABCD Integrated v0.2 Final Report - Fixed Final Action Semantics
+
+## Correction
+
+The previous `PPG_DEGRADED_ECG_OK -> MEASURE_OK` mapping was corrected to avoid overclaiming measurement reliability when PPG/SpO2 is degraded.
+
+Only `FINAL_NORMAL_CONFIDENT` maps to `MEASURE_OK` after this fix.
+
+## Fixed Smoke Test
+
+| Case | D Label | final_action | final_reason |
+| --- | --- | --- | --- |
+| all_normal | FINAL_NORMAL_CONFIDENT | MEASURE_OK | All core signals are usable; no major risk hint. |
+| ppg_bad_ecg_good | PPG_DEGRADED_ECG_OK | FINAL_UNCERTAIN | ECG is usable, but PPG/SpO2 is degraded; retest PPG contact if SpO2 or PPG-HR is required. |
+| ecg_bad_ppg_good | ECG_DEGRADED_PPG_OK | RETEST_CONTACT | PPG is usable, but ECG is degraded; fix ECG contact/lead condition before ECG rhythm interpretation. |
+| rhythm_suspect | RHYTHM_SUSPECT_RETEST | RHYTHM_RISK_RETEST | ECG rhythm-risk hint detected; retest under stable contact and stillness. Not a clinical conclusion. |
+| motion_degraded | MOTION_DEGRADED | KEEP_STILL | Motion may degrade signal reliability; keep still and retest. |
+| contact_bad | CONTACT_BAD_RETEST | RETEST_CONTACT | Contact or lead condition is unreliable; fix sensor contact and retest. |
+| recovery_wait | RECOVERY_WAIT | RETEST_AFTER_RECOVERY | Sensor recovery or physiological recovery window; wait and retest. |
+| sensor_conflict | SENSOR_CONFLICT | SENSOR_CONFLICT_RETEST | Sensor outputs conflict; retest under stable conditions. |
+| measure_failed | MEASURE_FAILED | MEASURE_FAILED | Multiple core signals unavailable or invalid. |
+| all_uncertain | FINAL_UNCERTAIN | FINAL_UNCERTAIN | Information is insufficient for confident measurement. |
+
+## Safety Boundary
+
+- No diagnosis output.
+- Model C remains a rhythm-risk hint candidate only.
+- D remains a fusion decision layer with rule fallback.
+- PC pipeline only; firmware/TFLite/GD32 remain false.
+
+## Deployment Gate
+
+ABCD_V0_2_PC_PIPELINE_READY = True
+FIRMWARE_READY = False
+TFLITE_ALL_READY = False
+GD32_READY = False

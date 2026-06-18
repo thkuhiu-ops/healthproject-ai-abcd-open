@@ -1,0 +1,6 @@
+accuracy,key_recall,limitation,macro_f1,model,source_type,status,task
+0.926829268292683,0.8181818181818182,small P001/P002 validation; not clinical generalization,0.9253539253539254,Model A,prediction table,verified_from_predictions,PPG quality gate
+0.9984567901234568,1.0,no prediction-level test table found,0.9987483710740005,Model B,summary JSON report-only,verified_report_only,ECG quality gate
+0.6833333333333333,0.8125,risk hint only; cross-subject not ready,0.5106097233413913,Model C,threshold-calibrated prediction table,verified_from_predictions,ECG rhythm risk hint
+0.9987333755541482,1.0,no prediction-level table found; PC candidate,0.9974759415961507,Model D,summary JSON report-only,verified_report_only,fusion decision
+1.0,,not single-model accuracy,,ABCD,fixed smoke output,verified_smoke,PC integration smoke

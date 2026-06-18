@@ -1,0 +1,15 @@
+claim_location,claim_name,claimed_value,source_file,source_value,recomputed_value,match_status,issue
+metrics_pack/json/model_a_metrics.json,model_a_accuracy,0.926829268292683,LOCAL_PATH_REMOVED,0.926829268292683,0.926829268292683,MATCH,
+metrics_pack/json/model_a_metrics.json,model_a_macro_f1,0.9253539253539254,LOCAL_PATH_REMOVED,0.9253539253539254,0.9253539253539254,MATCH,
+metrics_pack/json/model_b_metrics.json,model_b_accuracy,0.9984567901234568,LOCAL_PATH_REMOVED,0.9984567901234568,0.9984567901234568,MATCH,report-only source
+metrics_pack/json/model_b_metrics.json,model_b_macro_f1,0.9987483710740005,LOCAL_PATH_REMOVED,0.9987483710740005,0.9987483710740005,MATCH,report-only source
+metrics_pack/json/model_d_metrics.json,model_d_accuracy,0.9987333755541482,LOCAL_PATH_REMOVED,0.9987333755541482,0.9987333755541482,MATCH,report-only source
+metrics_pack/json/model_d_metrics.json,model_d_macro_f1,0.9974759415961507,LOCAL_PATH_REMOVED,0.9974759415961507,0.9974759415961507,MATCH,report-only source
+metrics_pack/json/model_c_threshold_calibrated_metrics.json,RHYTHM_SUSPECT_RECALL,0.8125,LOCAL_PATH_REMOVED,0.8125,0.8125,MATCH,
+metrics_pack/json/model_c_threshold_calibrated_metrics.json,SUSPECT_AS_NORMAL_RATE,0.0625,LOCAL_PATH_REMOVED,0.0625,0.0625,MATCH,
+metrics_pack/json/model_c_threshold_calibrated_metrics.json,NORMAL_AS_SUSPECT_RATE,0.11363636363636363,LOCAL_PATH_REMOVED,0.11363636363636363,0.11363636363636363,MATCH,
+metrics_pack/json/model_c_threshold_calibrated_metrics.json,OTHER_OR_UNCERTAIN_RATE,0.21666666666666667,LOCAL_PATH_REMOVED,0.21666666666666667,0.21666666666666667,MATCH,
+metrics_pack/reports/abcd_v0_2_smoke_metrics_report.md,smoke_pass_rate,1.0,LOCAL_PATH_REMOVED,1.0,1.0,MATCH,
+metrics_pack/reports/abcd_v0_2_final_metrics_report.md,FIRMWARE_READY,False,deployment gate policy,False,False,MATCH,
+metrics_pack/reports/abcd_v0_2_final_metrics_report.md,TFLITE_ALL_READY,False,deployment gate policy,False,False,MATCH,
+metrics_pack/reports/abcd_v0_2_final_metrics_report.md,GD32_READY,False,deployment gate policy,False,False,MATCH,
