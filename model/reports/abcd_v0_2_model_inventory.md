@@ -1,5 +1,7 @@
 # ABCD v0.2 Model Inventory
 
+> Current interpretation note: this inventory preserves historical ABCD experiment terminology. The current default public deployment candidate is ABD integrated / ABD_SAFE. Model C is retained as an experimental/reserved rhythm-risk hint module and is not part of the current default deployment chain.
+
 | Model | Version | Status | Deploy Status | Safety Boundary |
 | --- | --- | --- | --- | --- |
 | Model A - PPG quality gate | v0.4 | FOUND | PC_CANDIDATE_REFERENCE_ONLY | PPG quality gate, not diagnosis. |

@@ -1,21 +1,25 @@
-# ABCD v0.2 Inference Contract
+# ABD/ABCD v0.2 Inference Contract Notes
 
-## Scope
+This file contains historical ABCD experiment terminology.
+The current default deployment chain should be interpreted as **ABD integrated / ABD_SAFE**, with Model C treated as an experimental/reserved module rather than a default dependency.
 
-ABCD Integrated v0.2 is a PC-side inference and fusion candidate only. It does
-not retrain models, export TFLite, enter GD32 Embedded AI, or modify MDK firmware.
+## Current Default Chain
 
-## Pipeline Order
+The current paper/open-release mainline is:
 
 1. Load/read Model A PPG quality output.
 2. Load/read Model B ECG quality output.
-3. Run/read Model C only if Model B is `ECG_GOOD`.
-4. Build rule flags from IMU/TMP/contact/recovery/conflict fields.
-5. Run Model D v0.2 fusion.
-6. Apply hard-rule fallback; hard safety/retest rules override conflicting ML.
-7. Emit `final_action` and `final_reason`.
+3. Build rule flags from IMU, TMP/contact, recovery, data freshness, and signal-conflict fields.
+4. Run/read Model D_SAFE / ABD Fusion-assisted state classification.
+5. Let the firmware Fusion arbitration layer combine hard rules, sensor states, and model-assisted evidence.
+6. Emit firmware-side trust and UI state, such as `trust_score`, `trust_level`, `final_state`, and `hr_source`.
 
-## Model C Gate
+The deployment-candidate engineering classes are represented by states such as `FINAL_OK`, `SIGNAL_BAD_OR_CONTACT_BAD`, and `UNCERTAIN_OR_MOTION`.
+
+## Historical Model C Gate
+
+The following Model C gate is retained only for historical ABCD research-context documentation.
+It is not the current default ABD integrated / ABD_SAFE deployment path.
 
 ```text
 if model_b_label != "ECG_GOOD":
@@ -30,8 +34,9 @@ else:
     model_c_reason = "LOW_CONFIDENCE_GRAY_ZONE"
 ```
 
-## Safety
+## Safety Boundary
 
-Model C is a rhythm-risk hint candidate only, not diagnosis. Model D is a
-fusion decision layer only. Forbidden output tokens are listed in
-`schemas/abcd_v0_2_unified_output_schema.json`.
+Model A and Model B are signal-quality gates.
+Model D_SAFE / ABD Fusion provides model-assisted engineering state evidence.
+The firmware Fusion arbitration layer is responsible for the final trust/UI output.
+No model in this repository produces medical diagnostic conclusions.

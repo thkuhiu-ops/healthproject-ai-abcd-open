@@ -1,5 +1,7 @@
 # ABC v0.2 Paper Figure and Naming Report
 
+> Current interpretation note: this report preserves paper/figure naming history. The current open-release README and V1 firmware-aligned description use ABD integrated / ABD_SAFE as the default deployment candidate. Historical "Model C" fusion naming here should not be confused with the reserved ECG rhythm-risk hint module.
+
 ## Naming
 
 - Model A: PPG quality branch.

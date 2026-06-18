@@ -1,5 +1,7 @@
 # ABC v0.2 Model and System Evaluation
 
+> Current interpretation note: this paper-facing report uses historical ABC naming where the fusion branch may be called Model C. In the current open-release README and V1 firmware-aligned description, the default deployment candidate is ABD integrated / ABD_SAFE, with Model A, Model B, and Model D_SAFE / ABD Fusion as the main chain.
+
 ## Paper-Facing Naming
 
 - Model A: PPG signal quality assessment.

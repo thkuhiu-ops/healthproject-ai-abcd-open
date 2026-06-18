@@ -1,5 +1,7 @@
 # ABCD v0.2 Model Cards
 
+> Current interpretation note: these cards preserve historical ABCD experiment terminology. The current default public deployment candidate is ABD integrated / ABD_SAFE. Model C is retained as an experimental/reserved rhythm-risk hint module and is not part of the current default deployment chain.
+
 ## Model A - PPG quality gate
 
 - Version: v0.4

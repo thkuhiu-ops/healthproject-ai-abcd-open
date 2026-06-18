@@ -1,82 +1,123 @@
-# HealthProject AI ABCD Integrated Model v0.2
+# HealthProject AI ABD/ABCD Open Release
 
-Open release package for the HealthProject ABCD integrated physiological signal model.
+This repository contains open materials for the HealthProject multi-source vital-sign trust fusion system, including AI model artifacts, de-identified data, engineering reports, and GD32 deployment-validation evidence.
+The project targets wearable or embedded health-sensing experiments and studies one engineering question: before reporting heart rate, SpO2, body temperature, or related measurements, how can the system judge whether current PPG, ECG, temperature, motion, and contact conditions are reliable enough, or whether the user should keep still, improve contact, wait for recovery, or retest?
 
-## What This Project Does
+The repository is intended for research reproduction, engineering validation, and edge-deployment explanation.
+It is not intended for medical diagnosis.
 
-HealthProject AI ABCD v0.2 is a multi-stage physiological signal reliability and retest-decision pipeline for wearable or embedded health-sensing experiments.
-It is designed to answer an engineering question before a measurement is trusted: are the PPG, ECG, temperature, motion, and contact conditions good enough to accept the result, or should the user keep still, fix contact, wait for recovery, or retest?
+## Current Default Model Chain
 
-The pipeline combines four model stages:
+The current public release should be interpreted as an **ABD integrated / ABD_SAFE** trust-fusion deployment candidate.
+Its default engineering chain is:
 
-- **Model A - PPG quality gate**: classifies PPG windows as `PPG_GOOD`, `PPG_BAD`, or `PPG_UNCERTAIN`.
-- **Model B - ECG quality gate**: classifies ECG windows as `ECG_GOOD`, `ECG_BAD`, or `ECG_UNCERTAIN`.
-- **Model C - ECG rhythm-risk hint**: runs only when ECG quality is good, and outputs `NORMAL`, `RHYTHM_SUSPECT`, or `OTHER_OR_UNCERTAIN`. This is a risk hint, not a diagnosis.
-- **Model D - fusion decision layer**: combines A/B/C outputs with IMU motion, temperature, contact, recovery, heart-rate conflict, and missing-signal flags to produce a final action.
+- **Model A - PPG quality gate**: evaluates whether a PPG window has enough quality to support heart-rate and SpO2-related output.
+- **Model B - ECG quality gate**: evaluates whether an ECG segment has enough quality to support heart-rate output and signal-quality explanation.
+- **Model D_SAFE / ABD Fusion**: a fusion-assisted state-classification model that combines A/B outputs with IMU motion, temperature/contact state, recovery-window state, data freshness, and abnormal-signal flags to support engineering-level measurement-state prompts.
 
-The final output is not a disease label. It is a measurement workflow decision such as:
+The default deployment-candidate outputs are engineering state classes, for example:
 
-- `MEASURE_OK`
-- `KEEP_STILL`
-- `RETEST_CONTACT`
-- `RETEST_AFTER_RECOVERY`
-- `RHYTHM_RISK_RETEST`
-- `SENSOR_CONFLICT_RETEST`
-- `MEASURE_FAILED`
-- `FINAL_UNCERTAIN`
+- `FINAL_OK`
+- `SIGNAL_BAD_OR_CONTACT_BAD`
+- `UNCERTAIN_OR_MOTION`
 
-In practical terms, the project is useful for research and engineering validation of sensor-fusion behavior: deciding when a physiological measurement is reliable, explaining why it is unreliable, and producing reproducible PC-side and embedded-deployment candidate artifacts.
+These outputs help the firmware Fusion arbitration layer judge whether the current measurement is trustworthy, whether the user should keep still, and whether sensor contact should be improved.
+They are not disease classes and do not constitute medical diagnosis.
 
-## Important Safety Scope
+## About Model C
 
-This repository is for research and engineering evaluation only.
-Model C is a rhythm-risk hint candidate, not a clinical ECG interpretation model.
-The pipeline intentionally forbids diagnostic output tokens such as disease or diagnosis labels.
-The released embedded files are project-specific deployment excerpts; firmware rebuilds still require separately licensed vendor SDK and middleware dependencies.
+Model C was designed in the broader research path as an experimental ECG rhythm-risk hint candidate.
+It is **not** part of the current competition/paper default deployment chain and should not be read as the core model in the ABD integrated / ABD_SAFE path.
 
-This repository contains:
+In this repository, Model C-related materials are retained only to document historical experiments, complete research context, or reserved exploration paths.
+Model C does not output clinical diagnostic conclusions, should not be interpreted as a complete ECG diagnostic model, and is not used as the default dependency of the current ABD deployment candidate.
 
-- Inference and audit tooling for the ABCD integrated model.
-- Model artifacts for the ABD-from-ABCD deployment candidate.
-- Public schemas, contracts, model registry, and verified metrics.
-- De-identified CSV training and test data generated from local acquisition runs.
-- Embedded deployment excerpts limited to project-specific source/model files.
+## Model And Firmware Fusion Relationship
 
-## Repository Layout
+This project does not treat the AI model as the sole final arbiter.
+The system follows a **rule-first + model-assisted + firmware Fusion arbitration** structure.
+
+The firmware rule layer handles hard constraints such as:
+
+- ECG lead-off or invalid ECG contact;
+- PPG contact abnormality;
+- cold-finger or low-perfusion conditions;
+- strong IMU motion;
+- stale or interrupted sensor data;
+- recovery-window and trend-output suppression.
+
+AI models provide quality gates and auxiliary abnormal-state evidence.
+The final `trust_score`, `trust_level`, `final_state`, `hr_source`, and UI display state are generated by the firmware-side Fusion arbitration layer.
+Model outputs do not bypass hardware rules and do not directly produce medical diagnostic conclusions.
+
+## GD Embedded AI Tool Deployment Validation
+
+The repository includes GD Embedded AI Tool validation evidence for deployment-candidate models.
+This validation is best understood as edge-deployment and operator-compatibility evidence, including:
+
+- TFLite / Lite model parsing;
+- operator compatibility checks;
+- GD32 NN LIB inference-project generation;
+- PC TensorFlow Lite vs MCU GD32 NN LIB numerical-consistency checks;
+- single-inference latency statistics.
+
+This evidence shows that the candidate model has an engineering basis for entering the GD32 embedded inference path.
+It does not mean that the model directly publishes medical conclusions.
+In the actual system, final trustworthy-output behavior still comes from the firmware Fusion arbitration layer that combines sensor states, rule flags, and model outputs.
+
+## Repository Contents
 
 ```text
 model/
   tools/                  Python inference, analysis, and audit scripts
   models/                 Keras/SavedModel artifacts
-  schemas/                Public input/output schemas
-  contracts/              Inference and action mapping contracts
+  schemas/                Public input/output schemas and historical contracts
+  contracts/              Inference and action-mapping notes
   metrics_pack_verified/  Verified metrics, figures, and provenance reports
 embedded/
-  GD_Embedded_AI/         Project-specific embedded source excerpts
+  GD_Embedded_AI/         Project-specific embedded source excerpts and model payload
 data/
   train/                  De-identified training CSV files
   test/                   De-identified test CSV files
 docs/
+  DATASET_CARD.md         Public dataset notes
+  MODEL_CARD.md           Current model-chain interpretation
   dataset_manifest.csv    Public data file manifest with hashes
   release_manifest.csv    Public release file manifest with hashes
+scripts/
+  build_open_release.py   Rebuild helper for this open-release package
 ```
 
 ## De-identification
 
-The public CSV data was generated from the original local collection folders with `scripts/build_open_release.py`.
+The public CSV data was generated from local collection folders with `scripts/build_open_release.py`.
 The release process:
 
-- replaces private subject/run directory identifiers with stable public identifiers such as `P001`;
+- replaces private participant/run identifiers with stable public IDs such as `P001`;
 - removes date tokens from file names and file contents;
 - removes firmware build dates and clock times from CSV metadata lines;
 - removes local Windows paths when they appear in text artifacts;
-- excludes Word experiment-flow documents from the public release.
+- excludes Word experiment-flow documents from the public release;
+- does not publish the private participant mapping table.
 
-The de-identification process does not publish the private subject mapping table.
+The released data is intended for model-structure, feature-construction, and deployment-validation reproduction.
+
+## Safety Scope
+
+This repository is for research, teaching, engineering evaluation, and competition/paper reproduction.
+System outputs are measurement-trust states, abnormal-condition prompts, and retest suggestions.
+They are not medical diagnostic results.
+
+Do not use this project for:
+
+- clinical diagnosis;
+- disease judgment;
+- medical risk grading;
+- replacing physicians or certified medical devices.
 
 ## Rebuild The Release
 
-Run from the repository root on the original workstation. Set the source directory environment variables before rebuilding:
+Run from the repository root on the original workstation. Set source directory environment variables before rebuilding:
 
 ```powershell
 $env:HP_ABCD_MODEL_DIR="path\to\model_abcd_integrated_v0_2"
@@ -85,14 +126,10 @@ $env:HP_ABCD_TEST_DIR="path\to\test_csv_folder"
 python scripts/build_open_release.py
 ```
 
-The script regenerates `model/`, `embedded/`, `data/`, and the public manifests from the local source directories.
+The script regenerates `model/`, `embedded/`, `data/`, and public manifests from local source directories.
 If the variables are omitted, the script looks for sibling folders named `model_abcd_integrated_v0_2`, `source_train`, and `source_test`.
-
-## Notes
-
-The `embedded/` folder intentionally excludes vendor SDK packages, IDE build outputs, and proprietary prebuilt libraries.
-To rebuild firmware, install the required GigaDevice GD32H7xx SDK and AI middleware separately, then merge these project-specific files into the vendor project structure.
 
 ## License
 
-Code and documentation are released under the Apache License 2.0. De-identified data and model artifacts are released for research use; review `DATA_LICENSE.md` before public publication.
+Code and documentation are released under the Apache License 2.0.
+De-identified data and model artifacts are released for research and engineering reproduction use; review `DATA_LICENSE.md` before redistribution or public reuse.

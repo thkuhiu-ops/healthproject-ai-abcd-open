@@ -40,6 +40,7 @@
     "spo2_missing",
     "measure_failed"
   ],
-  "model_c_gate": "Model C may participate only when model_b_label == ECG_GOOD.",
-  "safety_boundary": "No diagnosis output; Model C is risk hint only; D is fusion decision only."
+  "current_default_chain_note": "Historical ABCD input schema retained for compatibility. Current default deployment candidate is ABD integrated / ABD_SAFE.",
+  "model_c_gate": "Historical/experimental only: Model C may participate only when model_b_label == ECG_GOOD. Current default ABD_SAFE deployment does not depend on Model C.",
+  "safety_boundary": "No medical diagnosis output. A/B provide quality gates, D_SAFE/ABD Fusion provides model-assisted engineering state evidence, and firmware Fusion arbitration generates final trust/UI state."
 }

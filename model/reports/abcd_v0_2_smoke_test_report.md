@@ -1,5 +1,7 @@
 # ABCD v0.2 Smoke Test Report
 
+> Current interpretation note: this document preserves a historical ABCD smoke-test route. Current default public deployment is ABD integrated / ABD_SAFE; Model C rows below are experimental context and are not the current default V1 firmware chain.
+
 - Input: `LOCAL_PATH_REMOVED
 - Output: `LOCAL_PATH_REMOVED
 - Rows: 10

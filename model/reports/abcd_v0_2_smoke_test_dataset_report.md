@@ -1,5 +1,7 @@
 # ABCD v0.2 Smoke Test Dataset Report
 
+> Current interpretation note: this dataset report preserves historical ABCD smoke-test cases, including experimental rhythm-risk cases. The current default public deployment candidate is ABD integrated / ABD_SAFE and does not use Model C as a default dependency.
+
 - Dataset: `LOCAL_PATH_REMOVED
 - Rows: 10
 - Contains required cases: all_normal, ppg_bad_ecg_good, ecg_bad_ppg_good, rhythm_suspect, motion_degraded, contact_bad, recovery_wait, sensor_conflict, measure_failed, all_uncertain.

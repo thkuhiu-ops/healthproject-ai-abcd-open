@@ -20,8 +20,8 @@ Original Word experiment documents are not included.
 
 ## Intended Use
 
-The dataset is intended for model reproducibility, signal-quality experiments, and non-clinical algorithm evaluation.
-It is not intended for clinical diagnosis, treatment decisions, or medical-device validation without additional controlled verification.
+The dataset is intended for model reproducibility, signal-quality experiments, firmware Fusion validation, and non-medical engineering evaluation.
+It is not intended for clinical diagnosis, treatment decisions, disease judgment, or medical-device validation without additional controlled verification.
 
 ## Known Limitations
 
