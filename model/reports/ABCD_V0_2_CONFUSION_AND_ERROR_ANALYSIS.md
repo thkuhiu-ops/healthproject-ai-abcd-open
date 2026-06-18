@@ -17,9 +17,9 @@ The real NPZ benchmark does not include manual ground-truth labels, so the confu
 - Inference times: `20`
 - Inference average latency: `0.09 ms`
 - Average error from tool: `2.144030683363e-08`
-- Max error from tool: `1.19DATE_REMOVED08e-07`
+- Max error from tool: `1.192092895508e-07`
 - Recomputed mean abs error: `2.144030683363e-08`
-- Recomputed max abs error: `1.19DATE_REMOVED08e-07`
+- Recomputed max abs error: `1.192092895508e-07`
 - Prediction match count: `20/20`
 
 ## PC-vs-MCU Confusion Matrix

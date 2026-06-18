@@ -2,6 +2,38 @@
 
 Open release package for the HealthProject ABCD integrated physiological signal model.
 
+## What This Project Does
+
+HealthProject AI ABCD v0.2 is a multi-stage physiological signal reliability and retest-decision pipeline for wearable or embedded health-sensing experiments.
+It is designed to answer an engineering question before a measurement is trusted: are the PPG, ECG, temperature, motion, and contact conditions good enough to accept the result, or should the user keep still, fix contact, wait for recovery, or retest?
+
+The pipeline combines four model stages:
+
+- **Model A - PPG quality gate**: classifies PPG windows as `PPG_GOOD`, `PPG_BAD`, or `PPG_UNCERTAIN`.
+- **Model B - ECG quality gate**: classifies ECG windows as `ECG_GOOD`, `ECG_BAD`, or `ECG_UNCERTAIN`.
+- **Model C - ECG rhythm-risk hint**: runs only when ECG quality is good, and outputs `NORMAL`, `RHYTHM_SUSPECT`, or `OTHER_OR_UNCERTAIN`. This is a risk hint, not a diagnosis.
+- **Model D - fusion decision layer**: combines A/B/C outputs with IMU motion, temperature, contact, recovery, heart-rate conflict, and missing-signal flags to produce a final action.
+
+The final output is not a disease label. It is a measurement workflow decision such as:
+
+- `MEASURE_OK`
+- `KEEP_STILL`
+- `RETEST_CONTACT`
+- `RETEST_AFTER_RECOVERY`
+- `RHYTHM_RISK_RETEST`
+- `SENSOR_CONFLICT_RETEST`
+- `MEASURE_FAILED`
+- `FINAL_UNCERTAIN`
+
+In practical terms, the project is useful for research and engineering validation of sensor-fusion behavior: deciding when a physiological measurement is reliable, explaining why it is unreliable, and producing reproducible PC-side and embedded-deployment candidate artifacts.
+
+## Important Safety Scope
+
+This repository is for research and engineering evaluation only.
+Model C is a rhythm-risk hint candidate, not a clinical ECG interpretation model.
+The pipeline intentionally forbids diagnostic output tokens such as disease or diagnosis labels.
+The released embedded files are project-specific deployment excerpts; firmware rebuilds still require separately licensed vendor SDK and middleware dependencies.
+
 This repository contains:
 
 - Inference and audit tooling for the ABCD integrated model.

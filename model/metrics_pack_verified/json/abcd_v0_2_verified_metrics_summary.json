@@ -2,7 +2,7 @@
   "model_a": {
     "accuracy": 0.926829268292683,
     "macro_precision": 0.9315789473684211,
-    "macro_recall": 0.9DATE_REMOVED8754208,
+    "macro_recall": 0.9208754208754208,
     "macro_f1": 0.9253539253539254,
     "per_class": {
       "GOOD": {

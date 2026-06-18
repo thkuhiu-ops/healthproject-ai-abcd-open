@@ -17,15 +17,15 @@
 ## Per-Frame Softmax
 
 - sample `0`: prob0=`0.00169614`, prob1=`0.00019620`, prob2=`0.99810767`, pred=`2:UNCERTAIN_OR_MOTION`
-- sample `1`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `2`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `3`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `4`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `5`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `6`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `1`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `2`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `3`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `4`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `5`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `6`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
 - sample `7`: prob0=`0.00268230`, prob1=`0.00410192`, prob2=`0.99321586`, pred=`2:UNCERTAIN_OR_MOTION`
-- sample `8`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
-- sample `9`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.DATE_REMOVED`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `8`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
+- sample `9`: prob0=`0.01589950`, prob1=`0.78400534`, prob2=`0.20009510`, pred=`1:SIGNAL_BAD_OR_CONTACT_BAD`
 - sample `10`: prob0=`0.00175946`, prob1=`0.00105645`, prob2=`0.99718410`, pred=`2:UNCERTAIN_OR_MOTION`
 - sample `11`: prob0=`0.00162553`, prob1=`0.00093145`, prob2=`0.99744296`, pred=`2:UNCERTAIN_OR_MOTION`
 - sample `12`: prob0=`0.00090686`, prob1=`0.00012546`, prob2=`0.99896765`, pred=`2:UNCERTAIN_OR_MOTION`

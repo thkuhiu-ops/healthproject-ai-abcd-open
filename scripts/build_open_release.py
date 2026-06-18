@@ -76,7 +76,7 @@ SKIP_SUFFIXES = {
 
 def sanitize_text(text: str) -> str:
     text = re.sub(r"(?<![A-Za-z0-9])S(\d{2})(?![A-Za-z0-9])", lambda m: f"P{int(m.group(1)):03d}", text)
-    text = re.sub(r"20\d{6}", "DATE_REMOVED", text)
+    text = re.sub(r"(?<![0-9.])20\d{6}(?![0-9])", "DATE_REMOVED", text)
     text = re.sub(
         r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2}\s+20\d{2}\b",
         "BUILD_DATE_REMOVED",
@@ -95,7 +95,7 @@ def sanitize_path_part(part: str) -> str:
     }
     part = replacements.get(part, part)
     part = re.sub(r"(?<![A-Za-z0-9])S(\d{2})(?![A-Za-z0-9])", lambda m: f"P{int(m.group(1)):03d}", part)
-    part = re.sub(r"20\d{6}", "DATE_REMOVED", part)
+    part = re.sub(r"(?<![0-9.])20\d{6}(?![0-9])", "DATE_REMOVED", part)
     part = part.replace("YYYYMMDD", "DATE_REMOVED")
     part = part.replace(".csv.csv", ".csv")
     return part

@@ -2,7 +2,7 @@
   "available": true,
   "accuracy": 0.926829268292683,
   "macro_precision": 0.9315789473684211,
-  "macro_recall": 0.9DATE_REMOVED875421,
+  "macro_recall": 0.920875420875421,
   "macro_f1": 0.9253539253539254,
   "per_class": {
     "GOOD": {

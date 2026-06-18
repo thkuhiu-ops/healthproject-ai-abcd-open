@@ -34,7 +34,7 @@
 - Model B: ECG Quality: accuracy `0.9985`, present macro F1 `0.9987`
 - Model C: Fusion Decision: accuracy `0.9677`, present macro F1 `0.9677`
 - PC/MCU mean absolute error: `2.144030683363e-08`
-- PC/MCU max absolute error: `1.19DATE_REMOVED08e-07`
+- PC/MCU max absolute error: `1.192092895508e-07`
 - GD32 deploy-tool average latency: `0.09 ms`
 
 ## Recommended Paper Usage

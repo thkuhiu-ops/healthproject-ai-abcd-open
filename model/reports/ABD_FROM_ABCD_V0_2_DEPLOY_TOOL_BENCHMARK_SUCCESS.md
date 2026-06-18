@@ -22,7 +22,7 @@ The GD32 AI deploy tool benchmark completed successfully with the real 107-dim A
 - Inference times: `20`
 - Inference average latency: `0.09 ms`
 - Average error: `2.1440306833634772e-08`
-- Max error: `1.19DATE_REMOVED078125e-07`
+- Max error: `1.1920928955078125e-07`
 
 ## Interpretation
 

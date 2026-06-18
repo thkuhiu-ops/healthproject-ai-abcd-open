@@ -40,4 +40,4 @@ Use the no-slice model for GD32 deployment and competition demonstration because
 - 20-frame PC/MCU numerical comparison,
 - average latency `0.09 ms`,
 - average error `2.1440306833634772e-08`,
-- max error `1.19DATE_REMOVED078125e-07`.
+- max error `1.1920928955078125e-07`.
